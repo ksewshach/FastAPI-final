@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{%block body%}
+
+
+
+
+
+
+
+<hr style='color:white;width:80%;margin-top:10%'>
+<div style='background-color:rgb(255, 255, 255, 0.5); margin-left:14%;margin-right:14%;padding:0.3%;text-align:center'>
+    <h1>Добро Пожаловать!</h1>
+    <h3>Располагайтесь поудобнее. Сейчас не произойдёт ничего. Пока что...</h3>
+</div>
+
+<hr style='color:white;width:75%'>
+
+<div style='background-color:rgb(255, 255, 255, 0.5); margin-left:14%;margin-right:14%;padding:0.3%;text-align:center'>
+
+    <h3>Таблица с задачами:</h3>
+    <ul id="ulTask">
+
+    </ul>
+
+</div>
+
+<div style='margin-top:5%;background-color:rgb(255, 255, 255, 0.5); margin-left:14%;margin-right:14%;padding-top:0.3%;padding-bottom:5%;text-align:center'>
+
+    <h3>Создать задачу</h3>
+    <form id="taskFormCreate">
+        <p><label>Название</label>
+        <input type="text" id="taskFormTitle"></p>
+        <p><label>Описание</label>
+        <input type="text" id="taskFormDescription"></p>
+        <button id="taskFormCreateBtn">Сохранить</button>
+    </form>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+const reqGetListTask = 'http://127.0.0.1:8000/api/v1/tasks/list';
+const reqPostCreateTask = 'http://127.0.0.1:8000/api/v1/tasks/create';
+const taskObject = { // Внутренность моджет менятся у конста
+    list_task: [],
+}
+// Делает GET запрос на url (reqGetListTask), где мы получаем список из задач и присваиваем данный список свойству объекта list_task объекта taskObject
+
+// Следующая конструкция 'then' - промис
+fetch(new Request(reqGetListTask)).then((response) =>
+response.json().then((data) => {
+    taskObject.list_task.push(data)
+    taskObject.list_task = data
+
+    ulTask = document.getElementById('ulTask');
+    for (let i = 0; i < taskObject.list_task.length; i++){
+        element_li = document.createElement('li');
+        element_id = document.createElement('p');
+        element_title = document.createElement('h2');
+        element_description = document.createElement('p');
+        element_status = document.createElement('p');
+
+        element_title = taskObject.list_task[i].title;
+        element_li.append(element_title);
+        ulTask.append(element_li);
+
+
+    }
+        
+
+})
+)
+// Разультат записываем в дату, и дату в лист_таск
+
+// ).then(data => taskObject.list_task.push(data)) // Добавляем в list_object[переменная - пустой массив] данные.
+
+
+    
+const taskFormCreateBtn = document.getElementById('taskFormCreateBtn');
+taskFormCreateBtn.addEventListener('click', function(event) {
+    event.preventDefault(); // когда обрабатываем post запрос, хтмл перезагружается, но этой строчкой мы это предотвращаем, и страница не обновляется 
+    let taskFormTitle = document.getElementById('taskFormTitle');
+    let taskFormDescription = document.getElementById('taskFormDescription');
+    data = {'title': taskFormTitle.value, 'description': taskFormDescription.value};
+    fetch(reqPostCreateTask, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' // взяли с docs
+        },
+        body: JSON.stringify(data)
+    })
+    taskFormTitle.value = '';
+    taskFormDescription.value = '';
+    alert('Задача создалась!')
+})
+
+
+</script>
+
+<script src="{{ url_for('static', path='index_script.js') }}"></script>
+{%endblock%}    

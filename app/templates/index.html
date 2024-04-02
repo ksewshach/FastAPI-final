@@ -1,9 +1,26 @@
 {% extends "base.html" %}
 
 {%block body%}
-<h1>ГЛАВНАЯ СТРАНИЦА САЙТА</h1>
 
 
 
-<script src="{{ url_for('static', path='script.js') }}"></script>
+
+
+
+
+<hr style='color:white;width:80%;margin-top:10%'>
+<div style='background-color:rgb(255, 255, 255, 0.5); margin-left:14%;margin-right:14%;padding:0.3%;text-align:center'>
+    <h1>Добро Пожаловать!</h1>
+    <h3>Располагайтесь поудобнее. Сейчас не произойдёт ничего. Пока что...</h3>
+</div>
+
+<hr style='color:white;width:75%'>
+
+<div style='background-color:rgb(255, 255, 255, 0.5); margin-left:14%;margin-right:14%;padding:0.3%;text-align:center'>
+    <h3>Скоро здесь будет что-то интересное...</h3>
+</div>
+
+
+
+<script src="{{ url_for('static', path='index_script.js') }}"></script>
 {%endblock%}    

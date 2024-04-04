@@ -73,7 +73,7 @@ def update_task(request: Request, task_id: int, task_change: TaskUpdateSchema): 
     session.close()
     return task_change
 
-@tasks_router.delete('/list/')
+@tasks_router.delete('/delete/')
 def delete_task(request: Request, task_id: int):
     session = Session(engine)
     stmt = select(TaskModel).where(TaskModel.id==task_id) # формируем запрос: мы хотим получить из таблички таск модел запись по айдишнику

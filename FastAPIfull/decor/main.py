@@ -1,5 +1,12 @@
+"""
+Декораторы в Python пишутся с использованием символа @ перед определенением функции, которую нужно декррировать.
+"""
+import time
+
+
 def func(): # <- функция 
     pass
+
 
 class Human():
     def add_human(self): # <- метод класса
@@ -10,12 +17,6 @@ human = Human()
 @human.add_human()
 def primer():
     pass
-
-"""
-Декораторы в Python пишутся с использованием символа @ перед определенением функции, которую нужно декррировать.
-"""
-
-import time
 
 
 def timer(func):
@@ -35,9 +36,6 @@ def generator(start, end, one, two, kwargs):
     for i in range(start, end):
         result.append(i)
     return result
-
-
-
 
 
 def message(func):

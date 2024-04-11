@@ -31,9 +31,6 @@ class User():
 
 user_one = User('Jibo@gmail.com', "12345678")
 user_two = User('Kirill@gmail.com', "87654321")
-"""print(f"Login:{user_one.get_login()}, Password:{user_one.get_password()}")
-user_one.upgrade_login('Himaki@gmail.com')
-print(f'New login: {user_one.get_login()}')"""
 
 user_one.__login = 50
 print(user_one.__login)
@@ -41,14 +38,6 @@ user_one.__login = "asdsafhreh"
 print(user_one.__login)
 
 
-"""
-св-во login, password
-методы
-1. Получить login
-2. Получить password
-3. Изменить login
-4. Изменить password
-"""
 
 class Fraction:
     count = 0

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+
+<div id="register_container">
+    <h2>Регистрация</h2>
+
+    <form action="#">
+
+        <div class="form-group">
+            <label for="email">Имя пользователя:</label>
+            <input type="email" id="username" name="username" required>
+            <div class="error" id="username-error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error" id="email-error"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+            <div class="error" id="password-error"></div>
+        </div>
+        <button type="submit" id="start_jorney_button">Начать приключение!</button>
+    </form>
+</div>
+
+<footer>
+    &copy; 2024 BookBook
+</footer>
+
+<sript src="static/registration_script.js"></sript>
+
+
+{%endblock%}    
+    
